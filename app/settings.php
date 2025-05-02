@@ -21,7 +21,6 @@ return function (ContainerBuilder $containerBuilder) {
                     'path' => isset($_ENV['docker']) ? 'php://stdout' : __DIR__ . '/../logs/app.log',
                     'level' => Logger::DEBUG,
                 ],
-                'jwtsecret' => $_ENV['JWT_SECRET'] ?? 'asdasddasdasdasdasd',
                 'doctrine' => [
                     // Enables or disables Doctrine metadata caching
                     // for either performance or convenience during development.
@@ -50,7 +49,11 @@ return function (ContainerBuilder $containerBuilder) {
                         'password' => $_ENV['MYSQL_PASSWORD'] ?? 'secret',
                         'charset' => $_ENV['MYSQL_CHARSET'] ?? 'utf-8'
                     ]
-                ]
+                ],
+                'mailgun' => [
+                    'domain' => 'sandbox9a1e358e2b6449f3bbccd2a8009d0b11.mailgun.org',
+                    'secret' => '108f4ed0a73be6e58563c9457c4e3cf5-67bd41c2-94db36c3',
+                ],
             ]);
         }
     ]);

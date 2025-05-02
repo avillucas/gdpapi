@@ -20,7 +20,7 @@ interface UserRepositoryInterface
 
     /**
      * @param string $username
-     * @return User[]
+     * @return User
      */
-    public function getUserByUsername(string $username): array;
+    public function getUserByUsername(string $username): User;
 }

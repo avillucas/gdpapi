@@ -2,22 +2,21 @@
 
 declare(strict_types=1);
 
-use App\Application\Handlers\HttpErrorHandler;
-use App\Application\Handlers\ShutdownHandler;
-use App\Application\ResponseEmitter\ResponseEmitter;
-use App\Application\Settings\SettingsInterface;
 use DI\ContainerBuilder;
 use Slim\Factory\AppFactory;
+use App\Application\Handlers\ShutdownHandler;
 use Slim\Factory\ServerRequestCreatorFactory;
-
+use App\Application\Handlers\HttpErrorHandler;
+use App\Application\Settings\SettingsInterface;
+use App\Application\ResponseEmitter\ResponseEmitter;
 require __DIR__ . '/../vendor/autoload.php';
 
 // Instantiate PHP-DI ContainerBuilder
 $containerBuilder = new ContainerBuilder();
 
-if (false) { // Should be set to true in production
-	$containerBuilder->enableCompilation(__DIR__ . '/../var/cache');
-}
+//if (false) { // Should be set to true in production
+//	$containerBuilder->enableCompilation(__DIR__ . '/../var/cache');
+//}
 
 // Set up settings
 $settings = require __DIR__ . '/../app/settings.php';
@@ -75,7 +74,6 @@ $app->addBodyParsingMiddleware();
 // Add Error Middleware
 $errorMiddleware = $app->addErrorMiddleware($displayErrorDetails, $logError, $logErrorDetails);
 $errorMiddleware->setDefaultErrorHandler($errorHandler);
-
 // Run App & Emit Response
 $response = $app->handle($request);
 $responseEmitter = new ResponseEmitter();

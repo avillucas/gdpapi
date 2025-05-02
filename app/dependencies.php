@@ -4,16 +4,19 @@ declare(strict_types=1);
 
 use Monolog\Logger;
 use DI\ContainerBuilder;
+use Doctrine\ORM\ORMSetup;
 use Psr\Log\LoggerInterface;
-use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
+use Doctrine\DBAL\DriverManager;
 use Monolog\Handler\StreamHandler;
 use Monolog\Processor\UidProcessor;
 use Psr\Container\ContainerInterface;
+use App\Domain\User\UserRepositoryInterface;
 use App\Application\Settings\SettingsInterface;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
-use JimTools\JwtAuth\Middleware\JwtAuthentication;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
+use userservice\infrastructure\repositories\UserRepository;
+
 
 return function (ContainerBuilder $containerBuilder) {
     $containerBuilder->addDefinitions([
@@ -31,25 +34,30 @@ return function (ContainerBuilder $containerBuilder) {
 
             return $logger;
         },
-        EntityManager::class => function (ContainerInterface $c): EntityManager {
+        EntityManager::class => static function (ContainerInterface $c): EntityManager {
             /** @var array $settings */
             $settings = $c->get('settings');
 
             // Use the ArrayAdapter or the FilesystemAdapter depending on the value of the 'dev_mode' setting
             // You can substitute the FilesystemAdapter for any other cache you prefer from the symfony/cache library
             $cache = $settings['doctrine']['dev_mode'] ?
-                DoctrineProvider::wrap(new ArrayAdapter()) :
-                DoctrineProvider::wrap(new FilesystemAdapter($settings['doctrine']['cache_dir']));
+                new ArrayAdapter() :
+                new FilesystemAdapter(directory: $settings['doctrine']['cache_dir']);
 
-            $config = Setup::createAttributeMetadataConfiguration(
+            $config = ORMSetup::createAttributeMetadataConfiguration(
                 $settings['doctrine']['metadata_dirs'],
                 $settings['doctrine']['dev_mode'],
                 null,
                 $cache
             );
 
-            return EntityManager::create($settings['doctrine']['connection'], $config);
+            $connection = DriverManager::getConnection($settings['doctrine']['connection']);
+
+            return new EntityManager($connection, $config);
         },
-        
+        UserRepositoryInterface::class => function (ContainerInterface $container) {
+            return $container->get(EntityManager::class)->getRepository(UserRepository::class);
+        }
+
     ]);
 };
