@@ -5,16 +5,31 @@ declare(strict_types=1);
 namespace App\Domain\User;
 
 use JsonSerializable;
+use DateTimeImmutable;
+use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\Table;
+use Doctrine\ORM\Mapping\Column;
+use Doctrine\ORM\Mapping\Entity;
 
-class User implements JsonSerializable
+use Doctrine\ORM\Mapping\GeneratedValue;
+
+#[Entity, Table(name: 'users')]
+final class User implements JsonSerializable
 {
+    #[Id, Column(type: 'integer'), GeneratedValue(strategy: 'AUTO')]
     private ?int $id;
 
+    #[Column(type: 'string', unique: true, nullable: false)]
     private string $username;
 
+    #[Column(type: 'string', unique: false, nullable: false)]
     private string $firstName;
 
+    #[Column(type: 'string', unique: false, nullable: false)]
     private string $lastName;
+
+    #[Column(name: 'registered_at', type: 'datetimetz_immutable', nullable: false)]
+    private DateTimeImmutable $registeredAt;
 
     public function __construct(?int $id, string $username, string $firstName, string $lastName)
     {
@@ -22,6 +37,7 @@ class User implements JsonSerializable
         $this->username = strtolower($username);
         $this->firstName = ucfirst($firstName);
         $this->lastName = ucfirst($lastName);
+        $this->registeredAt = new DateTimeImmutable('now');
     }
 
     public function getId(): ?int

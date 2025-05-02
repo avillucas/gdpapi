@@ -13,12 +13,18 @@
         }
     ],
     "require": {
-        "php": "^7.4 || ^8.0",
+        "php": "^8.2",
         "ext-json": "*",
+        "doctrine/annotations": "^2.0",
+        "doctrine/orm": "^3.3",
+        "jimtools/jwt-auth": "^2.2",
         "monolog/monolog": "^2.8",
+        "palanik/corsslim": "^1.0",
         "php-di/php-di": "^6.4",
+        "phpmailer/phpmailer": "^6.10",
         "slim/psr7": "^1.5",
-        "slim/slim": "^4.10"
+        "slim/slim": "^4.10",
+        "symfony/cache": "^7.2"
     },
     "require-dev": {
         "jangregor/phpstan-prophecy": "^1.0.0",

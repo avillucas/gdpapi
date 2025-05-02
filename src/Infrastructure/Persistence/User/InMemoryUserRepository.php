@@ -6,9 +6,9 @@ namespace App\Infrastructure\Persistence\User;
 
 use App\Domain\User\User;
 use App\Domain\User\UserNotFoundException;
-use App\Domain\User\UserRepository;
+use App\Domain\User\UserRepositoryInterface;
 
-class InMemoryUserRepository implements UserRepository
+class InMemoryUserRepository implements UserRepositoryInterface
 {
     /**
      * @var User[]
@@ -18,7 +18,7 @@ class InMemoryUserRepository implements UserRepository
     /**
      * @param User[]|null $users
      */
-    public function __construct(array $users = null)
+    public function __construct(?array $users = null)
     {
         $this->users = $users ?? [
             1 => new User(1, 'bill.gates', 'Bill', 'Gates'),
