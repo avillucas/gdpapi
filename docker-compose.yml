@@ -1,18 +1,73 @@
-version: '3.7'
-
-volumes:
-    logs:
-        driver: local
-
+# IMPORTANT NOTES:
+# If you will execute this compose file more than one time, you need
+# to do some changes: ports, project name (in env file) and mysql volume name
+# Also, you need to wait acouple of minutes before login to phpmyadmin. If not
+# you will acquire an error #2002 - Connection refused &mdash; El servidor no está respondiendo (o el zócalo local al servidor MySQL no está configurado correctamente).
 services:
-    slim:
-        image: php:7-alpine
-        working_dir: /var/www
-        command: php -S 0.0.0.0:8080 -t public
+    php:  
+      container_name: gdp_ngnixfpm
+      build: 
+          context: .
+      environment:
+          MYSQL_HOST: mariadb  
+          MYSQL_PORT: 3306  
+          MYSQL_DBNAME: gdp  
+          MYSQL_USER: gdp  
+          MYSQL_PASSWORD: gdp
+          APP_ENV: dev
+          PHP_ERROR_REPORTING: -1 
+          PHP_ERROR_DISPLAY: -1 
+          PHP_STARTUP_ERROR_DISPLAY: -1 
+          APP_TIMEZONE: 'America/Argentina/Buenos_Aires'
+      ports:
+          - 8080:80
+          - 9000:9000
+      volumes:
+        - .:/var/www/
+      depends_on:
+        - mariadb             
+      networks:
+        - local    
+      extra_hosts:
+        - "host.docker.internal:host-gateway" # for windows and macos
+
+    mariadb:
+        image: mariadb:10
+        container_name: gdp_database
+        restart: always
         environment:
-            docker: "true"
-        ports:
-            - "8080:8080"
-        volumes:
-            - .:/var/www
-            - logs:/var/www/logs
+            # Change the passwords below
+            # root (This user will be able to view database restored from schema.sql / all databases)
+            MYSQL_ROOT_PASSWORD: SecretPassword@1980            
+            # Create new user (This user only has access to the new database)
+            MYSQL_USER: gdp
+            MYSQL_PASSWORD: gdp
+            # Create New Database
+            MYSQL_DATABASE: gdp
+        volumes:           
+          # Store database data into a Volume
+          - mariadb:/var/lib/mysql      
+        ports: 
+          - 3307:3306 
+        networks:
+          - local   
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin:latest
+        # image: phpmyadmin/phpmyadmin
+        container_name: gdp_phpmyadmin
+        ports: 
+          - 8091:80
+        #links:
+        #  - mysql 
+        environment:
+          PMA_HOST: mariadb 
+        depends_on:
+          - mariadb          
+        networks:
+          - local                            
+networks:
+    local:
+        driver: bridge
+volumes:
+    mariadb:
+        driver: local

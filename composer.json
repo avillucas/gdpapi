@@ -1,24 +1,15 @@
 {
-    "name": "slim/slim-skeleton",
-    "description": "A Slim Framework skeleton application for rapid development",
+    "name": "divit/gdp-api",
+    "description": "Api Guardianes de patitas",
     "keywords": [
-        "microframework",
-        "rest",
-        "router",
-        "psr7"
+        "mascotas",
+        "guarderia"
     ],
-    "homepage": "http://github.com/slimphp/Slim-Skeleton",
     "license": "MIT",
     "authors": [
         {
-            "name": "Josh Lockhart",
-            "email": "info@joshlockhart.com",
-            "homepage": "http://www.joshlockhart.com/"
-        },
-        {
-            "name": "Pierre Berube",
-            "email": "pierre@lgse.com",
-            "homepage": "http://www.lgse.com/"
+            "name": "Lucas Avila",
+            "email": "avillucas@gmail.com"
         }
     ],
     "require": {
