@@ -1,6 +1,7 @@
 {
     "name": "divit/gdp-api",
     "description": "Api Guardianes de patitas",
+    "version": "1.0.0",
     "keywords": [
         "mascotas",
         "guarderia"
@@ -24,6 +25,7 @@
         "palanik/corsslim": "^1.0",
         "php-di/php-di": "^6.4",
         "phpmailer/phpmailer": "^6.10",
+        "respect/validation": "^2.4",
         "slim/psr7": "^1.5",
         "slim/slim": "^4.10",
         "symfony/cache": "^7.2",

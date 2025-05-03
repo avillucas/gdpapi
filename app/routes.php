@@ -18,11 +18,11 @@ return function (App $app) {
     });
 
     $app->group('/api/v1/public', function (Group $group) {
-        $group->post('contact', ListUsersAction::class);
+        $group->post('contact', ContactAction::class);
     });
 
     $app->group('/api/v1/admin', function (Group $group) {
-        $group->group('/users', function (Group $group) {
+        $group->group('/users', callable: function (Group $group) {
             $group->get('', ListUsersAction::class);
             $group->get('/{id}', ViewUserAction::class);
         });

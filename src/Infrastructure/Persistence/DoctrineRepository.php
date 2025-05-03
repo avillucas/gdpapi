@@ -2,7 +2,7 @@
 
 use Doctrine\ORM\EntityManager;
 
-class Repository
+class DoctrineRepository
 {
     protected EntityManager $entityManager;
     public function __construct(EntityManager $entityManager)

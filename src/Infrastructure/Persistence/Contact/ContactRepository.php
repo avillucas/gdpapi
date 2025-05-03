@@ -6,10 +6,10 @@ use DoctrineRepository;
 use App\Domain\User\User;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
-use App\Domain\User\UserNotFoundException;
-use App\Domain\User\UserRepositoryInterface;
+use App\Domain\Contact\UserNotFoundException;
+use App\Domain\Contact\ContactRepositoryInterface;
 
-class UserRepository extends DoctrineRepository implements UserRepositoryInterface
+class ContactRepository extends DoctrineRepository implements ContactRepositoryInterface
 {
     private EntityRepository $repository;
 
@@ -36,14 +36,14 @@ class UserRepository extends DoctrineRepository implements UserRepositoryInterfa
 
     /**
      * Find one Users
-     * @throws UserNotFoundException
+     * @throws ContactNotFoundException
      * @return User
      */
     public function findUserOfId(int $id): User
     {
         $user = $this->repository->find($id);
         if (!isset($user)) {
-            throw new UserNotFoundException();
+            throw new ContactNotFoundException();
         }
         return $user;
     }
@@ -51,12 +51,8 @@ class UserRepository extends DoctrineRepository implements UserRepositoryInterfa
     /**
      *@inheritDoc
      */
-    public function getUserByUsername(string $username): User
+    public function save(Contact $contact): bool
     {
-        $user = $this->repository->findOneBy(['username' => $username]);
-        if (!isset($user)) {
-            throw new UserNotFoundException();
-        }
-        return $user;
+       return $this->repository->save($contact);
     }
 }
