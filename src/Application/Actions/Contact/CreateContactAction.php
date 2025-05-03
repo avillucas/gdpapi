@@ -17,14 +17,11 @@ class CreateContactAction extends ContactAction
     /** 
      * @OA\Post ( 
      *  tags={"contact"}, 
-     *  path="/contact", 
+     *  path="/api/v1/public/contact", 
      *  operationId="createContact", 
      *  @OA\Response ( 
      *      response="201", 
-     *      description="Create a contact and send an email", 
-     *       @OA\JsonContent ( 
-     *          type="string"
-     *       ) 
+     *      description="Create a contact and send an email"
      *   ) 
      * )  
      * @throws DomainRecordNotFoundException
