@@ -22,6 +22,7 @@ return function (ContainerBuilder $containerBuilder) {
                     'path' => isset($_ENV['docker']) ? 'php://stdout' : __DIR__ . '/../logs/app.log',
                     'level' => Logger::DEBUG,
                 ],
+                'jwtsecret' => $_ENV['JWT_SECRET'] ?? 'asdasddasdasdasdasd',
                 'doctrine' => [
                     // Enables or disables Doctrine metadata caching
                     // for either performance or convenience during development.
