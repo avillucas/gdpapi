@@ -53,8 +53,8 @@ return function (ContainerBuilder $containerBuilder) {
                     ]
                 ],
                 'mailgun' => [
-                    'domain' => $_ENV['MAILGUN_DOMAIN'] ,
-                    'secret' => $_ENV['MAILGUN_SECRET'] ,
+                    'domain' => $_ENV['MAILGUN_DOMAIN'] ?? 'sandbox9a1e358e2b6449f3bbccd2a8009d0b11.mailgun.org',
+                    'secret' => $_ENV['MAILGUN_SECRET']  ?? '108f4ed0a73be6e58563c9457c4e3cf5-67bd41c2-94db36c3',
                 ],
             ]);
         }
