@@ -14,9 +14,9 @@ abstract class ContactAction extends Action
 {
     protected ContactRepository $contactRepository;
 
-        protected EmailTransportInterface $emailTransport;
+    protected EmailTransportInterface $emailTransport;
 
-    public function __construct(LoggerInterface $logger, ContactRepositoryInterface $contactRepository,EmailTransportInterface $emailTransport)
+    public function __construct(LoggerInterface $logger, ContactRepositoryInterface $contactRepository, EmailTransportInterface $emailTransport)
     {
         parent::__construct($logger);
         $this->contactRepository = $contactRepository;

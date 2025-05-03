@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Application\Middleware;
+namespace App\Utils;
 
 use Slim\Psr7\Response;
 use Yiisoft\Validator\Validator;

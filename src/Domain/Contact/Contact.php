@@ -9,7 +9,12 @@ use DateTimeImmutable;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 
-/**
+
+/** 
+ * @OA\Schema ( 
+ *   title="Contact", 
+ *   description="A contact" 
+ * ) 
  * @Entity(repositoryClass="infrastructure\persistence\UserRepository")
  */
 final class Contact implements JsonSerializable
@@ -17,23 +22,28 @@ final class Contact implements JsonSerializable
     /**
      * @Id
      * @Column(type="integer")
+     * @OA\Property (type="integer", formato="int64", readOnly=true, example=1) 
      */
     private ?int $id;
+   
     /**
      * @Column(type="string", length="120")
      * @var string
+     * @OA\Property (type="string", example="test@test.com.ar") 
      */
     private string $email;
 
     /**
      * @Column(type="string", length="120")
      * @var string
+     * @OA\Property (type="string", example="John") 
      */
     private string $name;
 
     /**
      * @Column(type="string", length="2500")
      * @var string
+    * @OA\Property (type="name", example="This is a test") 
      */
     private string $comments;
 
@@ -68,5 +78,74 @@ final class Contact implements JsonSerializable
             'comments' => $this->comments,
             'registeredAt' => $this->registeredAt,
         ];
+    }
+
+    /**
+     * Get the value of email
+     *
+     * @return string
+     */
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set the value of email
+     *
+     * @param string $email
+     *
+     * @return self
+     */
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+        return $this;
+    }
+
+    /**
+     * Get the value of comments
+     *
+     * @return string
+     */
+    public function getComments(): string
+    {
+        return $this->comments;
+    }
+
+    /**
+     * Set the value of comments
+     *
+     * @param string $comments
+     *
+     * @return self
+     */
+    public function setComments(string $comments): self
+    {
+        $this->comments = $comments;
+        return $this;
+    }
+
+    /**
+     * Get the value of name
+     *
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set the value of name
+     *
+     * @param string $name
+     *
+     * @return self
+     */
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+        return $this;
     }
 }

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Domain\Contact;
 
+use Exception;
+
 interface ContactRepositoryInterface
 {
     /**
@@ -16,11 +18,11 @@ interface ContactRepositoryInterface
      * @return Contact
      * @throws ContactNotFoundException
      */
-    public function findUserOfId(int $id): Contact;
-
+    public function find(int $id): Contact;
     /**
-     * @param string $fromEmail 
+     * @param Contact $contact
      * @return Contact
+     * @throws Exception
      */
-    public function getUserByFromEmail(string $fromEmail): Contact;
+    public function save(Contact $contact): Contact;
 }

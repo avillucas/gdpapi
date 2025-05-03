@@ -1,11 +1,10 @@
 <?php
-
+declare(strict_types=1);
 namespace App\Utils;
 
 use Yiisoft\Validator\Result;
 use Slim\Exception\HttpBadRequestException;
 use Psr\Http\Message\ServerRequestInterface;
-use Mailgun\Model\EmailValidation\ValidateResponse;
 
 class ValidatorException extends HttpBadRequestException
 {

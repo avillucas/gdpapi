@@ -4,9 +4,10 @@ namespace userservice\infrastructure\repositories;
 
 use DoctrineRepository;
 use App\Domain\User\User;
+use App\Domain\Contact\Contact;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
-use App\Domain\Contact\UserNotFoundException;
+use App\Domain\Contact\ContactNotFoundException;
 use App\Domain\Contact\ContactRepositoryInterface;
 
 class ContactRepository extends DoctrineRepository implements ContactRepositoryInterface
@@ -37,9 +38,9 @@ class ContactRepository extends DoctrineRepository implements ContactRepositoryI
     /**
      * Find one Users
      * @throws ContactNotFoundException
-     * @return User
+     * @return Contact
      */
-    public function findUserOfId(int $id): User
+    public function find(int $id): Contact
     {
         $user = $this->repository->find($id);
         if (!isset($user)) {
@@ -51,8 +52,10 @@ class ContactRepository extends DoctrineRepository implements ContactRepositoryI
     /**
      *@inheritDoc
      */
-    public function save(Contact $contact): bool
+    public function save(Contact $contact): Contact
     {
-       return $this->repository->save($contact);
+        $this->repository->persist($contact);
+        $this->repository->flush();
+        return $contact;
     }
 }

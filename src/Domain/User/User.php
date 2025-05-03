@@ -11,6 +11,10 @@ use Doctrine\ORM\Mapping\Entity;
 
 /**
  * @Entity(repositoryClass="infrastructure\persistence\UserRepository")
+ * @OA\Schema(
+ *     title="User",
+ *     description="A simple user model."
+ * )
  */
 final class User implements JsonSerializable
 {

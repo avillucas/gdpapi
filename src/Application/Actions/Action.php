@@ -11,6 +11,10 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use App\Domain\DomainException\DomainRecordNotFoundException;
 
+/** 
+ * @OA\Server (url="http://localhost:8080") 
+ * @OA\Info (título="Guardinaes de patitas API", versión="1.0") 
+ */
 abstract class Action
 {
     protected LoggerInterface $logger;
