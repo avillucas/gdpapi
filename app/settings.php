@@ -13,7 +13,7 @@ return function (ContainerBuilder $containerBuilder) {
     $containerBuilder->addDefinitions([
         SettingsInterface::class => function () {
             return new Settings([
-                'env'=>  $_ENV['APP_ENVIROMENT'] ??  'development',
+                'env' =>  $_ENV['APP_ENVIROMENT'] ??  'development',
                 'displayErrorDetails' => true, // Should be set to false in production
                 'logError'            => false,
                 'logErrorDetails'     => false,
@@ -52,8 +52,8 @@ return function (ContainerBuilder $containerBuilder) {
                     ]
                 ],
                 'mailgun' => [
-                    'domain' => 'sandbox9a1e358e2b6449f3bbccd2a8009d0b11.mailgun.org',
-                    'secret' => '108f4ed0a73be6e58563c9457c4e3cf5-67bd41c2-94db36c3',
+                    'domain' => $_ENV['MAILGUN_DOMAIN'] ?? 'sandbox9a1e358e2b6449f3bbccd2a8009d0b11.mailgun.org',
+                    'secret' => $_ENV['MAILGUN_SECRET'] ?? '108f4ed0a73be6e58563c9457c4e3cf5-67bd41c2-94db36c3',
                 ],
             ]);
         }
