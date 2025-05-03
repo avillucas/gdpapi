@@ -11,11 +11,9 @@ use Doctrine\DBAL\DriverManager;
 use Monolog\Handler\StreamHandler;
 use Monolog\Processor\UidProcessor;
 use Psr\Container\ContainerInterface;
-use App\Domain\User\UserRepositoryInterface;
 use App\Application\Settings\SettingsInterface;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
-use userservice\infrastructure\repositories\UserRepository;
 
 
 return function (ContainerBuilder $containerBuilder) {
@@ -56,9 +54,5 @@ return function (ContainerBuilder $containerBuilder) {
 
             return new EntityManager($connection, $config);
         },
-        UserRepositoryInterface::class => function (ContainerInterface $container) {
-            return $container->get(EntityManager::class)->getRepository(UserRepository::class);
-        }
-
     ]);
 };

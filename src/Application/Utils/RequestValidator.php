@@ -2,11 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Utils;
+namespace App\Application\Utils;
 
 use Slim\Psr7\Response;
 use Yiisoft\Validator\Validator;
-use App\Utils\ValidatorException;
 use Psr\Http\Server\MiddlewareInterface as Middleware;
 use Yiisoft\Validator\RulesProviderInterface  as Ruler;
 use Psr\Http\Message\ServerRequestInterface as Request;

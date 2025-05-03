@@ -1,14 +1,18 @@
 <?php
 
-namespace userservice\infrastructure\repositories;
 
-use DoctrineRepository;
+declare(strict_types=1);
+
+namespace App\Infrastructure\Persistence\Contact;
+
+
 use App\Domain\User\User;
 use App\Domain\Contact\Contact;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use App\Domain\Contact\ContactNotFoundException;
 use App\Domain\Contact\ContactRepositoryInterface;
+use App\Infrastructure\Persistence\DoctrineRepository;
 
 class ContactRepository extends DoctrineRepository implements ContactRepositoryInterface
 {

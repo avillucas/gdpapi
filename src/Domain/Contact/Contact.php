@@ -22,7 +22,7 @@ final class Contact implements JsonSerializable
     /**
      * @Id
      * @Column(type="integer")
-     * @OA\Property (type="integer", formato="int64", readOnly=true, example=1) 
+     * @OA\Property (type="integer", format="int64", readOnly=true, example=1) 
      */
     private ?int $id;
    
@@ -146,6 +146,18 @@ final class Contact implements JsonSerializable
     public function setName(string $name): self
     {
         $this->name = $name;
+        return $this;
+    }
+
+    /**
+     * Set the value of id
+     *
+     * @param ?int $id
+     *
+     * @return self
+     */
+    public function setId(?int $id): self {
+        $this->id = $id;
         return $this;
     }
 }

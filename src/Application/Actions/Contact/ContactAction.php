@@ -8,7 +8,7 @@ use Psr\Log\LoggerInterface;
 use App\Application\Actions\Action;
 use App\Domain\Contact\ContactRepositoryInterface;
 use App\Infrastructure\Service\EmailTransportInterface;
-use userservice\infrastructure\repositories\ContactRepository;
+use App\Infrastructure\Persistence\Contact\ContactRepository ;
 
 abstract class ContactAction extends Action
 {

@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
-namespace App\Utils;
+
+namespace App\Application\Utils;
 
 use Yiisoft\Validator\Result;
 use Slim\Exception\HttpBadRequestException;

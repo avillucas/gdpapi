@@ -1,13 +1,15 @@
 <?php
+declare(strict_types=1);
 
-namespace userservice\infrastructure\repositories;
+namespace App\Infrastructure\Persistence\User;
 
-use DoctrineRepository;
+
 use App\Domain\User\User;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use App\Domain\User\UserNotFoundException;
 use App\Domain\User\UserRepositoryInterface;
+use App\Infrastructure\Persistence\DoctrineRepository;
 
 class UserRepository extends DoctrineRepository implements UserRepositoryInterface
 {

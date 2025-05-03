@@ -29,11 +29,9 @@ class InMemoryContactRepository implements ContactRepositoryInterface
         ];
     }
 
-   
+
     /**
-     * Find all contacts
-     * 
-     * @return Contact[]
+     * @inheritDoc
      */
     public function findAll(): array
     {
@@ -63,5 +61,28 @@ class InMemoryContactRepository implements ContactRepositoryInterface
             }
         }
         throw new ContactNotFoundException();
+    }
+
+
+    /**
+     * {@inheritdoc}
+     */
+    public function save(Contact $contact): Contact
+    {
+        $contactId = count($this->contacts);
+        $this->contacts[$contactId] = $contact;
+        $contact->setId($contactId);
+        return $contact;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function find(int $id): Contact
+    {
+        if (!isset($this->contacts[$id])) {
+            throw new ContactNotFoundException();
+        }
+        return $this->contacts[$id];
     }
 }

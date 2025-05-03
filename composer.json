@@ -59,6 +59,7 @@
         }
     },
     "scripts": {
+        "swagger": "./vendor/bin/openapi --output ./nodist/swagger/openapi.json ./src/",
         "start": "php -S localhost:8080 -t public",
         "test": "phpunit"
     }

@@ -1,0 +1,124 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Guardinaes de patitas API",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8080"
+        }
+    ],
+    "paths": {
+        "/api/v1/public/contact": {
+            "post": {
+                "tags": [
+                    "contact"
+                ],
+                "operationId": "createContact",
+                "responses": {
+                    "201": {
+                        "description": "Create a contact and send an email"
+                    }
+                }
+            }
+        },
+        "/users": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "operationId": "getUsers",
+                "responses": {
+                    "200": {
+                        "description": "List all users",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/User"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users/{id}": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "operationId": "getUser",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A single user",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Contact": {
+                "title": "Contact",
+                "description": "A contact",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int64",
+                        "readOnly": true,
+                        "example": 1
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "test@test.com.ar"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "John"
+                    },
+                    "comments": {
+                        "type": "name",
+                        "example": "This is a test"
+                    }
+                },
+                "type": "object"
+            },
+            "User": {
+                "title": "User",
+                "description": "A simple user model."
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "contact",
+            "description": "contact"
+        },
+        {
+            "name": "user",
+            "description": "user"
+        }
+    ]
+}

@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Infrastructure\Service;
+
 use Mailgun\Mailgun;
 use App\Domain\Contact\Contact;
 use App\Infrastructure\Service\EmailTransportInterface;

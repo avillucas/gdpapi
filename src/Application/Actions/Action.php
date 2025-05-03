@@ -13,7 +13,7 @@ use App\Domain\DomainException\DomainRecordNotFoundException;
 
 /** 
  * @OA\Server (url="http://localhost:8080") 
- * @OA\Info (título="Guardinaes de patitas API", versión="1.0") 
+ * @OA\Info (title="Guardinaes de patitas API", version="1.0.0") 
  */
 abstract class Action
 {

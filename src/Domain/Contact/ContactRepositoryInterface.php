@@ -19,6 +19,7 @@ interface ContactRepositoryInterface
      * @throws ContactNotFoundException
      */
     public function find(int $id): Contact;
+    
     /**
      * @param Contact $contact
      * @return Contact
