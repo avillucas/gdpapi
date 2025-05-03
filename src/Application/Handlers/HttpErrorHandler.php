@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace App\Application\Handlers;
 
-use App\Application\Actions\ActionError;
-use App\Application\Actions\ActionPayload;
-use Psr\Http\Message\ResponseInterface as Response;
-use Slim\Exception\HttpBadRequestException;
-use Slim\Exception\HttpException;
-use Slim\Exception\HttpForbiddenException;
-use Slim\Exception\HttpMethodNotAllowedException;
-use Slim\Exception\HttpNotFoundException;
-use Slim\Exception\HttpNotImplementedException;
-use Slim\Exception\HttpUnauthorizedException;
-use Slim\Handlers\ErrorHandler as SlimErrorHandler;
 use Throwable;
+use Slim\Exception\HttpException;
+use App\Application\Actions\ActionError;
+use Slim\Exception\HttpNotFoundException;
+use App\Application\Actions\ActionPayload;
+use Slim\Exception\HttpForbiddenException;
+use Slim\Exception\HttpBadRequestException;
+use Slim\Exception\HttpUnauthorizedException;
+use Slim\Exception\HttpNotImplementedException;
+use Slim\Exception\HttpMethodNotAllowedException;
+use Psr\Http\Message\ResponseInterface as Response;
+use Slim\Handlers\ErrorHandler as SlimErrorHandler;
 
 class HttpErrorHandler extends SlimErrorHandler
 {

@@ -2,12 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Application\Actions\User;
+namespace App\Application\Actions\Contact;
 
-use App\Domain\Contact\Contact;
 use Psr\Http\Message\ResponseInterface as Response;
 
-class CreateAction extends ContactAction
+class CreateContactAction extends ContactAction
 {
     /**
      * {@inheritdoc}
@@ -15,9 +14,11 @@ class CreateAction extends ContactAction
     protected function action(): Response
     {
         $params = $this->request->getQueryParams();
-        $contact = new Contact();
+        //   $contact = new Contact();
+        //save  contact 
+        //send email
 
-        $this->logger->info(sprintf("Email from %s to %s was sent ",$from, $to));
+        // $this->logger->info(sprintf("Email from %s to %s was sent ",$from, $to));
 
         return $this->respondWithMessage('The email was sent  ');
     }

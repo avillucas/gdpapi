@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Application\Actions\User;
+namespace App\Application\Actions\Contact;
 
 use Psr\Log\LoggerInterface;
 use App\Application\Actions\Action;
+use App\Domain\Contact\ContactRepositoryInterface;
 use App\Infrastructure\Service\EmailTransportInterface;
 use userservice\infrastructure\repositories\ContactRepository;
 
