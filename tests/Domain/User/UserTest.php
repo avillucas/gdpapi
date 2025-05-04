@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Domain\User;
 
-use App\Domain\User\User;
 use Tests\TestCase;
+use App\Domain\User\User;
 
 class UserTest extends TestCase
 {
@@ -55,6 +55,6 @@ class UserTest extends TestCase
             'lastName' => $lastName,
         ]);
 
-        $this->assertEquals($expectedPayload, json_encode($user));
+        $this->assertEquals($expectedPayload, json_encode(value: $user));
     }
 }
