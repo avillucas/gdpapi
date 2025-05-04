@@ -24,19 +24,19 @@ final class User implements JsonSerializable
      */
     private ?int $id;
     /**
-     * @Column(type="string", length="120")
+     * @Column(type="string", length="120", name="username", nullable=false)
      * @var string
      */
     private string $username;
 
     /**
-     * @Column(type="string", length="120")
+     * @Column(type="string", length="120", name="first_name", nullable=false)
      * @var string
      */
     private string $firstName;
 
     /**
-     * @Column(type="string", length="120")
+     * @Column(type="string", length="120", name="last_name", nullable=false)
      * @var string
      */
     private string $lastName;
