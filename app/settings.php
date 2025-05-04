@@ -35,7 +35,7 @@ return function (ContainerBuilder $containerBuilder) {
                     // List of paths where Doctrine will search for metadata.
                     // Metadata can be either YML/XML files or PHP classes annotated
                     // with comments or PHP8 attributes.
-                    'metadata_dirs' => [__DIR__ . '/src/Domain'],
+                    'metadata_dirs' => [__DIR__ . '/../src/Domain'],
 
                     // The parameters Doctrine needs to connect to your database.
                     // These parameters depend on the driver (for instance the 'pdo_sqlite' driver
@@ -44,12 +44,12 @@ return function (ContainerBuilder $containerBuilder) {
                     // of valid parameters: https://www.doctrine-project.org/projects/doctrine-dbal/en/current/reference/configuration.html
                     'connection' => [
                         'driver' => $_ENV['MYSQL_DRIVER'] ??  'pdo_mysql',
-                        'host' => $_ENV['MYSQL_HOST'] ?? 'localhost',
+                        'host' => $_ENV['MYSQL_HOST'] ?? 'mariadb',
                         'port' => $_ENV['MYSQL_PORT'] ??  3306,
-                        'dbname' => $_ENV['MYSQL_DATABASE'] ??  'mydb',
-                        'user' => $_ENV['MYSQL_USER'] ?? 'user',
-                        'password' => $_ENV['MYSQL_PASSWORD'] ?? 'secret',
-                        'charset' => $_ENV['MYSQL_CHARSET'] ?? 'utf-8'
+                        'dbname' => $_ENV['MYSQL_DATABASE'] ??  'gdp',
+                        'user' => $_ENV['MYSQL_USER'] ?? 'gdp',
+                        'password' => $_ENV['MYSQL_PASSWORD'] ?? 'gdp',
+                        'charset' => $_ENV['MYSQL_CHARSET'] ?? 'utf8'
                     ]
                 ],
                 'mailgun' => [

@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 
 /**
- * @Entity(repositoryClass="infrastructure\persistence\UserRepository")
+ * @Entity(repositoryClass="Infrastructure\Persistence\UserRepository")
  * @OA\Schema(
  *     title="User",
  *     description="A simple user model."
