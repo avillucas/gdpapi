@@ -18,6 +18,7 @@
         "ext-json": "*",
         "doctrine/annotations": "^2.0",
         "doctrine/dbal": "^4.0",
+        "doctrine/doctrine-migrations-bundle": "^3.0",
         "doctrine/orm": "^3.0",
         "mailgun/mailgun-php": "^4.3",
         "monolog/monolog": "^2.8",
@@ -61,6 +62,8 @@
     "scripts": {
         "swagger": "./vendor/bin/openapi --output ./nodist/swagger/openapi.json ./src/",
         "start": "php -S localhost:8080 -t public",
+        "doctrine:migrate": "vendor/bin/doctrine-migrations migration:migrate   --configuration /var/www/app/migrations.php --db-configuration /var/www/app/database.php -q",
+        "doctrine:schema": " vendor/bin/doctrine-migrations migration:dump-schema  --configuration /var/www/app/migrations.php --db-configuration /var/www/app/database.php",
         "test": "phpunit"
     }
 }

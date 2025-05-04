@@ -27,21 +27,21 @@ final class Contact implements JsonSerializable
     private ?int $id;
    
     /**
-     * @Column(type="string", length="120")
+     * @Column(type="string", length="120",name="email", nullable=false)
      * @var string
      * @OA\Property (type="string", example="test@test.com.ar") 
      */
     private string $email;
 
     /**
-     * @Column(type="string", length="120")
+     * @Column(type="string", length="120",name="name", nullable=false)
      * @var string
      * @OA\Property (type="string", example="John") 
      */
     private string $name;
 
     /**
-     * @Column(type="string", length="2500")
+     * @Column(type="string", length="2500",name="comments", nullable=false)
      * @var string
     * @OA\Property (type="name", example="This is a test") 
      */

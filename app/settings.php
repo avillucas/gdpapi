@@ -9,9 +9,12 @@ use App\Application\Settings\SettingsInterface;
 
 return function (ContainerBuilder $containerBuilder) {
 
+
+
     // Global Settings Object
     $containerBuilder->addDefinitions([
         SettingsInterface::class => function () {
+            $connectionSettings  = require __DIR__ . '/database.php';
             return new Settings([
                 'env' =>  $_ENV['APP_ENVIROMENT'] ??  'development',
                 'displayErrorDetails' => true, // Should be set to false in production
@@ -42,15 +45,7 @@ return function (ContainerBuilder $containerBuilder) {
                     // needs a 'path' parameter and doesn't use most of the ones shown in this example).
                     // Refer to the Doctrine documentation to see the full list
                     // of valid parameters: https://www.doctrine-project.org/projects/doctrine-dbal/en/current/reference/configuration.html
-                    'connection' => [
-                        'driver' => $_ENV['MYSQL_DRIVER'] ??  'pdo_mysql',
-                        'host' => $_ENV['MYSQL_HOST'] ?? 'mariadb',
-                        'port' => $_ENV['MYSQL_PORT'] ??  3306,
-                        'dbname' => $_ENV['MYSQL_DATABASE'] ??  'gdp',
-                        'user' => $_ENV['MYSQL_USER'] ?? 'gdp',
-                        'password' => $_ENV['MYSQL_PASSWORD'] ?? 'gdp',
-                        'charset' => $_ENV['MYSQL_CHARSET'] ?? 'utf8'
-                    ]
+                    'connection' => $connectionSettings
                 ],
                 'mailgun' => [
                     'domain' => $_ENV['MAILGUN_DOMAIN'] ?? 'sandbox9a1e358e2b6449f3bbccd2a8009d0b11.mailgun.org',
