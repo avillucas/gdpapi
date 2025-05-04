@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Slim\App;
 use Slim\Exception\HttpNotFoundException;
+use App\Application\Actions\Swagger\InfoAction;
 use App\Application\Actions\User\ViewUserAction;
 use App\Application\Actions\User\ListUsersAction;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -27,7 +28,8 @@ return function (App $app) {
     });
 
     $app->group('/api/v1/public', function (Group $group) {
-        $group->post('contact', CreateContactAction::class)->addMiddleware(new ContactValidatorMiddleware());
+        $group->post('/contact', CreateContactAction::class)->addMiddleware(new ContactValidatorMiddleware());
+        $group->get('/swagger', InfoAction::class);
     });
 
     $app->group('/api/v1/admin', function (Group $group) {

@@ -2,7 +2,7 @@ FROM alpine:latest
 
 # Essentials
 RUN echo "UTC" > /etc/timezone
-RUN apk add --no-cache zip unzip curl sqlite nginx supervisor poppler-utils
+RUN apk add --no-cache zip unzip curl sqlite nginx supervisor poppler-utils nodejs npm
 
 # Installing PHP
 RUN apk add --no-cache php82 \
@@ -70,6 +70,8 @@ RUN touch /run/nginx/nginx.pid
 
 RUN ln -sf /dev/stdout /var/log/nginx/access.log
 RUN ln -sf /dev/stderr /var/log/nginx/error.log
+
+RUN npm i -g open-swagger-ui
 
 # Building process
 COPY .  /var/www/

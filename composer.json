@@ -61,6 +61,7 @@
     },
     "scripts": {
         "swagger": "./vendor/bin/openapi --output ./nodist/swagger/openapi.json ./src/",
+        "swagger:render":"  open-swagger-ui /var/www/nodist/swagger/openapi.json  --open",
         "start": "php -S localhost:8080 -t public",
         "doctrine:migrate": "vendor/bin/doctrine-migrations migration:migrate   --configuration /var/www/app/migrations.php --db-configuration /var/www/app/database.php -q",
         "doctrine:schema": " vendor/bin/doctrine-migrations migration:dump-schema  --configuration /var/www/app/migrations.php --db-configuration /var/www/app/database.php",

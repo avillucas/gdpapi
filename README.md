@@ -1,7 +1,7 @@
 
 php bin/doctrine make:migration
 php bin/doctrine doctrine:migrations:migrate
-
+https://medium.com/swlh/integrate-openapi-into-slim-php-project-15dd9e1dc398
 # Slim Framework 4 Skeleton Application
 
 [![Coverage Status](https://coveralls.io/repos/github/slimphp/Slim-Skeleton/badge.svg?branch=master)](https://coveralls.io/github/slimphp/Slim-Skeleton?branch=master)
