@@ -12,6 +12,10 @@ use App\Application\Actions\User\ListUsersAction;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use App\Application\Actions\Contact\CreateContactAction;
+use App\Application\Actions\New\ViewNewsAction;
+use App\Application\Actions\User\AddNewAction;
+use App\Application\Actions\User\DeleteNewAction;
+use App\Application\Actions\User\ListNewsAction;
 use App\Application\Middleware\ContactValidatorMiddleware;
 use App\Middlewares\jwtAuth;
 use Slim\Interfaces\RouteCollectorProxyInterface as Group;
@@ -43,6 +47,13 @@ return function (App $app) {
         $group->group('/users', callable: function (Group $group) {
             $group->get('', ListUsersAction::class);
             $group->get('/{id}', ViewUserAction::class);
+        });
+        $group->group('/new', callable: function (Group $group) {
+            $group->get('', ListNewsAction::class);
+            $group->get('/{id}', ViewNewsAction::class);
+            $group->post('/', AddNewAction::class);
+            $group->delete('/{id}', DeleteNewAction::class);
+            $group->put('/{id}', ViewNewsAction::class);
         });
     })->add(jwtAuth::class);;
 
