@@ -52,6 +52,9 @@ return function (ContainerBuilder $containerBuilder) {
                     'secret' => $_ENV['MAILGUN_SECRET']  ?? '108f4ed0a73be6e58563c9457c4e3cf5-67bd41c2-94db36c3',
                     'to' => $_ENV['MAILGUN_TO']  ?? 'avillucas@gmail.com',
                 ],
+                'jwt' => [
+                    'secret' => $_ENV['JWT_SECRET']  ?? '108f4ed0a73be6e58563c9457c4e3cf5-67bd41c2-94db36c3',
+                ],
             ]);
         }
     ]);

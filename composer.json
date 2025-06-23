@@ -30,6 +30,7 @@
         "slim/slim": "^4.10",
         "symfony/cache": "^7.2",
         "symfony/http-client": "^7.2",
+        "tuupola/slim-jwt-auth": "^3.8",
         "yiisoft/validator": "^2.2",
         "zircote/swagger-php": "^5.1"
     },

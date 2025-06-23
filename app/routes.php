@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use App\Application\Actions\Auth\LoginAction;
+use App\Application\Actions\Auth\RegisterAction;
 use Slim\App;
 use Slim\Exception\HttpNotFoundException;
 use App\Application\Actions\Swagger\InfoAction;
@@ -11,6 +13,7 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use App\Application\Actions\Contact\CreateContactAction;
 use App\Application\Middleware\ContactValidatorMiddleware;
+use App\Middlewares\jwtAuth;
 use Slim\Interfaces\RouteCollectorProxyInterface as Group;
 
 return function (App $app) {
@@ -33,11 +36,15 @@ return function (App $app) {
     });
 
     $app->group('/api/v1/admin', function (Group $group) {
+        $group->group('/auth', callable: function (Group $group) {
+            $group->post('/register', RegisterAction::class);
+            $group->post('/login', LoginAction::class);
+        });
         $group->group('/users', callable: function (Group $group) {
             $group->get('', ListUsersAction::class);
             $group->get('/{id}', ViewUserAction::class);
         });
-    });
+    })->add(jwtAuth::class);;
 
 
     /**

@@ -12,6 +12,8 @@ use Monolog\Handler\StreamHandler;
 use Monolog\Processor\UidProcessor;
 use Psr\Container\ContainerInterface;
 use App\Application\Settings\SettingsInterface;
+use App\Infrastructure\Service\JWTService;
+use App\Infrastructure\Service\JWTServiceInterface;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 
@@ -53,6 +55,9 @@ return function (ContainerBuilder $containerBuilder) {
             $connection = DriverManager::getConnection($doctrine['connection']);
 
             return new EntityManager($connection, $config);
+        },
+        JWTServiceInterface::class => function (ContainerInterface $c) {
+            return new JWTService($c);
         },
     ]);
 };
